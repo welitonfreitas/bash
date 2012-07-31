@@ -1,4 +1,4 @@
-__hellobits_prompt () {
+  __notilew_prompt () {
   history -a
   history -c
   history -r
@@ -31,6 +31,7 @@ __hellobits_prompt () {
     local RAILS_VERSION=`cat Gemfile.lock | grep -E " +rails \([0-9]+" | sed 's/ *rails (\(.*\))/\1/'`
   fi
 
+  local NAME="${GRAY}[NoTiLeW]${NO_COLOR}"
   local RUBY_PROMPT=""
   local STATUS=`git status 2>/dev/null`
   local PROMPT_COLOR=""
@@ -49,7 +50,7 @@ __hellobits_prompt () {
     local RAILS_PROMPT="${RAILS_VERSION}#"
   fi
 
-  RUBY_PROMPT="${GRAY}[${RAILS_PROMPT}${RUBY_VERSION}]${NO_COLOR} "
+  RUBY_PROMPT="${LIGHT_RED}[${RAILS_PROMPT}${RUBY_VERSION}]${NO_COLOR} "
 
   if [ "$STATUS" != "" ]; then
     if [[ "$STATUS" =~ "$CHANGES_NOT_STAGED" ]]; then
@@ -82,10 +83,10 @@ __hellobits_prompt () {
       STATE="${STATE}${YELLOW}*${NO_COLOR}"
     fi
 
-    PS1="\n${RUBY_PROMPT}${BASE_COLOR}\w\a${NO_COLOR} ${PROMPT_COLOR}${BRANCH}${NO_COLOR}${STATE}${NO_COLOR}\n\$ "
+    PS1="\n${NAME}${RUBY_PROMPT}${BASE_COLOR}\w\a${NO_COLOR} ${PROMPT_COLOR}${BRANCH}${NO_COLOR}${STATE}${NO_COLOR}\n\$ "
   else
-    PS1="\n${RUBY_PROMPT}${BASE_COLOR}\w\a${NO_COLOR}\n\$ "
+    PS1="\n${NAME}${RUBY_PROMPT}${BASE_COLOR}\w\a${NO_COLOR}\n\$ "
   fi
 }
 
-PROMPT_COMMAND=__hellobits_prompt
+PROMPT_COMMAND=__notilew_prompt
